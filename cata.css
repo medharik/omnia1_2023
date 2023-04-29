@@ -1,0 +1,21 @@
+*{
+    margin: 0;padding: 0;
+}
+#catalogue{
+  width: 100%;
+  min-height: 600px; 
+  background: white; 
+  margin: auto;
+}
+.produit{
+  width:calc(25% - 5px);
+  border: 1px solid black;
+  background: purple;
+  height: 400px;  
+  display: inline-block;
+}
+.produit img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

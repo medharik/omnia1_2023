@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Facture en ligne</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="noprint">
+
+          <hr>
+          <button  id="p">Imprimer</button>
+        <hr />
+        <input type="text" name="" id="designation" placeholder="Designation" />
+        <input type="number" name="" id="pu" placeholder="Prix unitaire" />
+        <input type="number" name="" id="qte" placeholder="Qté" />
+        <button id="btnplus"  >+</button>
+        <hr />
+      </div> 
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Qté</th>
+            <th>Designation</th>
+            <th>Pu</th>
+            <th>THT</th>
+          </tr>
+        </thead>
+        <tbody id="corps">
+        
+        </tbody>
+        
+        <tfoot>
+          <tr>
+            <th colspan="2"></th>
+            <th>Total HT</th>
+            <th id="tht"></th>
+          </tr>
+          <tr>
+            <th colspan="2"></th>
+            <th>TVA 20%</th>
+            <th id="tva"></th>
+          </tr>
+          <tr>
+            <th colspan="2"></th>
+            <th>TOTAL</th>
+            <th id="total"></th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <script>
+        let totalHt=0;
+        const TAUX_TVA=0.20;
+        function ajouterLigne() {
+            let corps = document.getElementById("corps");
+            let designation = document.getElementById("designation");
+            let qte = document.getElementById("qte");
+            let pu = document.getElementById("pu");
+            let tht = document.getElementById("tht");
+            let prix = pu.value;
+            let totalLigne=prix*qte.value;
+            totalHt +=totalLigne;
+            tht.innerText=totalHt+"MAD";
+                
+            document.getElementById('tva').innerText=totalHt*TAUX_TVA+"MAD";
+            document.getElementById('total').innerText=totalHt+ totalHt*TAUX_TVA+"MAD";
+
+        let ligne = `  <tr>
+                        <td>${qte.value}</td>
+                        <td>${designation.value}</td>
+                        <td>${prix}</td>
+                        <td>${totalLigne}</td>
+                    </tr>`;
+        corps.innerHTML += ligne;
+      }
+
+
+      document.getElementById('btnplus').addEventListener("click",ajouterLigne);
+      document.getElementById('p').addEventListener("mouseover",function(){     window.print();   });
+      document.getElementById('p').addEventListener("click",function(){     window.print();   });
+    </script>
+  </body>
+</html>

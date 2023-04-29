@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+      <table>
+        <tr>
+          <td>Jours</td>
+          <td>Mois</td>
+          <td>Annee</td>
+        </tr>
+        <tr>
+          <td>
+            <select name="" id="jours">
+            
+            </select>
+          </td>
+          <td>
+            <select name="" id="mois">
+            
+            </select>
+          </td>
+          <td>
+            <select name="" id="annee" onchange="getAge()">
+            
+            </select>
+          </td>
+        </tr>
+        <tr>
+            <td colspan="3"><button onclick="remplirBDForm()">charger les valeurs</button></td>
+        </tr>
+      </table>
+      <div id="age"></div>
+      <script>
+          let jours=document.getElementById('jours');
+          let mois=document.getElementById('mois');
+          let annee=document.getElementById('annee');
+       function remplirBDForm() {
+        for (let i = 1; i <= 31; i++) {
+          //  jours.options[i] = new Option(i, i);
+          jours.innerHTML+="<option>"+i+"</option>";
+                      
+        }
+        const ageMin=20;
+        const ageMax=100;
+        let annee_depart=new Date().getFullYear()-ageMin;
+        let annee_fin=new Date().getFullYear()-ageMax;
+
+
+
+
+        for (let j = 1; j <= 12; j++)       mois.innerHTML+="<option>"+j+"</option>";
+        for (let i = annee_depart; i >=annee_fin ; i--)       annee.innerHTML+="<option>"+i+"</option>";
+                    
+        
+       }
+      
+function getAge() { // birthday is a date
+   let  birthday=new Date(annee.value,mois.value,jours.value);
+    var ageDifMs = Date.now() - birthday.getTime();
+    var ageDate = new Date(ageDifMs); // miliseconds from epoch
+    let age = Math.abs(ageDate.getUTCFullYear() - 1970);
+console.log(" votre age est "+age);
+let divAge=document.getElementById('age');
+divAge.innerHTML="votre age est "+age;
+}
+
+
+
+
+    
+
+       remplirBDForm();
+      </script>
+  </body>
+</html>

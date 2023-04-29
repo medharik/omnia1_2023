@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>decouverte de REGEX</title>
+  </head>
+  <body>
+    Email : <input type="text" name="email" id="email" /> Cin :
+    <input type="text" name="cin" id="cin" />
+    <button onclick="validerTout()">Ok</button>
+    <div id="erreur"></div>
+    <script>
+        let email = document.getElementById("email");
+        let erreur = document.getElementById("erreur");
+
+      function validateEmail() {
+        // let  pattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        //test@gmail.com
+        //je recupere la position de @
+        let posAro = email.value.indexOf("@");
+        let posPoint = email.value.lastIndexOf(".");
+        let char = email.value[0];
+
+        if (posAro != -1 && posPoint != -1 && posPoint >= posAro + 1) {
+          console.log("email correct");
+        } else {
+          console.log("email incorrect");
+        }
+        console.log("chat at 0", char);
+        // console.log("test de la fonction indexOf", email.value.indexOf("@"));
+
+        // console.log("variable email ", email.value);
+      }
+
+      function validerEmailRegex() {
+        let modele = /[a-z]{1,}@[a-z]{2,}.[a-z]{2,4}/;
+        if (!modele.test(email.value)) {
+          erreur.innerHTML += "Email incorrect<br>";
+        } 
+      }
+
+      function validerCin() {
+        let cin = document.getElementById("cin");
+        let modeleCin = /^[a-zA-Z]{1,2}[0-9]{3,6}$/;
+        if(!modeleCin.test(cin.value)){
+            erreur.innerHTML += "Cin incorrect<br>";
+        }
+        
+      }
+
+      function validerTout(){
+        erreur.innerHTML="";
+        validerEmailRegex();
+        validerCin();
+      }
+    </script>
+  </body>
+</html>

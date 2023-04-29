@@ -1,0 +1,72 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Tangerine', serif;}
+ul{
+    background: rgb(27, 44, 1);
+    list-style:none;
+    padding: 0;
+    text-align: center;
+    box-shadow:  3px 3px 3px 0px #888888;
+}
+li{
+    /* border: solid; */
+  display: inline-block;
+  /* height: 40px; */
+}
+a{
+    /* background: green; */
+    display: block;
+    color: white;
+    /* padding: 10px; */
+    height: 30px;
+    line-height: 30px;
+    text-decoration: none;
+    font-family: sans-serif;
+    margin-right: 20px;
+    box-sizing: border-box;
+    font-size: 15px;
+    
+}
+a:hover{
+    background: rgb(11, 11, 162);
+    border-bottom: 4px solid orangered;
+}
+
+#intro{
+    background: url("menara.webp");
+    background-size: cover;
+    background-position: center;
+    height: calc( 100vh - 30px );
+    display: flex;
+
+
+}
+#textaccueil{
+color: white;
+text-align: center;
+width: 60%;
+margin: auto;
+font-size: 8em;
+text-shadow: 1px 0px 2px #121212;
+
+}
+#catalogue{
+width: 1000px;
+height: 600px;
+background: rgba(128, 0, 0, 0.3);
+margin: auto;
+}
+
+.produit{
+    width: calc(50% - 8px);
+    height: 400px;
+    background:green ;
+    display: inline-block;
+    border: solid;
+}
+.produit img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
