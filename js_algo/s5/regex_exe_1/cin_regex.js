@@ -2,11 +2,11 @@ let ok=document.getElementById('ok');
 let messageErreur="";
 ok.addEventListener("click",function(){
     messageErreur=""
-    erreur.innerHTML=messageErreur;
     //testerCin
     testerCin();
     //testerMatricule
     testerMatricule();
+    erreur.innerHTML=messageErreur;
     
 })
     let erreur=document.getElementById('erreur')
