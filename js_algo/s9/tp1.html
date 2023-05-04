@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>tp 1 : tableaux / FCT en JS/</title>
+  </head>
+  <body>
+    <div style="text-align: center">
+      Produit :
+      <input
+        id="produit"
+        type="text"
+      />
+      <button onclick="ajouter()" id="ok">+</button>
+    </div>
+    <br />
+    <table
+      border="1"
+      width="200"
+      align="center"
+    >
+      <tr>
+        <td>Produits</td>
+      </tr>
+      <tbody id="corps">
+    
+      </tbody>
+    
+    </table>
+
+
+    <script>
+      let stocks = [];
+
+      function ajouter() {
+        var p = document.getElementById("produit");
+        stocks.push(p.value)
+       let x= stocks.map(
+            (e) => `<tr><td>${e}</td></tr>`,
+                 );
+            // console.log();  
+            let corps=document.getElementById('corps');
+            corps.innerHTML  =x.join("") 
+      }
+    </script>
+  </body>
+</html>
