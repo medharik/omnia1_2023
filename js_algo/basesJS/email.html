@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>verifir email</title>
+</head>
+<body>
+    <h1>Inscription</h1>
+    Email : <input type="text" id="mail">
+    <button onclick="tester()" >Ok</button>
+    <div id="erreur"></div>
+    <script>
+        function tester() {
+            let mail=document.getElementById('mail');
+            let erreur=document.getElementById('erreur');
+
+            if (mail.value=="") {
+                //alert("le champs email est obligatoire");
+           erreur.innerHTML="email obligatoire";
+            }
+        }
+    </script>
+</body>
+</html>
