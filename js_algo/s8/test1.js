@@ -14,7 +14,9 @@ let k=[10,3,8,0,100,700,-390,66,55];
 r=k.slice(4,7);
 console.log('le resultat est : ',r);
 let sp=[1,2,3,4,5];
+
 let x=sp.splice(0,2);
 console.log('x est ',sp)
 // console.log(a[3],a[1],a[10],a.length);
 console.log(a);
+
