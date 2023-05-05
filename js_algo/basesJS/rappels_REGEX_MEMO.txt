@@ -27,4 +27,4 @@ aletr("ok)
 }else{
     alert("KO);
 }
-modelEmail=/^[a-z]{1,}[a-z0-9.]@[a-z]{1,}.com/
+modelEmail=/^[a-z]{1,}[a-z0-9.]@[a-z]{1,}.[a-z]{2,3}$/
