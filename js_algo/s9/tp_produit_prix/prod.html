@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>produit , ttc</title>
+</head>
+<body>
+ <form action="">
+    Produit : <input type="text" id="produit">
+    Prix : <input type="number" id="prix">
+    <button type="button" onclick="ajouter()" >+</button>
+
+ </form>   
+
+ <table border="1" align="center" width="300">
+    <thead>
+        <tr>
+            <td>Produit</td>
+            
+        </tr>
+    </thead>
+    <tbody id="c">
+      
+    </tbody>
+ </table>
+ <div id="total"></div>
+<!-- hp=>  <tr>
+    <td>hp</td>
+</tr> -->
+
+    
+
+    <script>
+        let tab=[];
+        let total=0;
+        function ajouter() {
+            let prod=document.getElementById("produit");
+            let prix=document.getElementById("prix");
+            let c=document.getElementById("c");
+            let t=document.getElementById("total");
+            total+=parseFloat(prix.value);
+            t.innerHTML=total+"DHS";
+            tab.push(`${prod.value} ${prix.value}`);
+let data=tab.map(e=> ` <tr>
+            <td>${e}</td>        </tr>`
+);
+
+c.innerHTML=data.join("")
+        console.log(total)
+
+        // let t=["salut","ali"];=>"salut#ali";
+// t.join("#")
+
+        }
+    </script>
+</body>
+</html>

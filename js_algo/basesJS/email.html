@@ -16,20 +16,29 @@
     <h1>Inscription</h1>
     <form action="">
       Email :
-      <input         type="text"         id="mail"              />
-      <button type="button"  onclick="tester()">Ok</button>
+      <input
+        type="text"
+        id="mail"
+      />
+      <button         type="button"         onclick="tester()"      >
+        Ok
+      </button>
     </form>
 
     <div id="erreur"></div>
+
     <script>
       function tester() {
-        let mail = document.getElementById("mail");
-        let erreur = document.getElementById("erreur");
-
-        if (mail.value == "") {
-          //alert("le champs email est obligatoire");
-          erreur.innerHTML = "email obligatoire";
+        let m = document.getElementById("mail");
+        let e = document.getElementById("erreur");
+        let modelEmail=/^[a-z]{1,}[0-9a-z.]{0,}@[a-z]{2,}[.]{1}[a-z]{2,3}$/
+        if (modelEmail.test(m.value)) {
+            // alert('OK')
+            e.innerHTML="OK";
+        }else{
+            e.innerHTML="KO";
         }
+
       }
     </script>
   </body>
