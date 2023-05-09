@@ -15,6 +15,7 @@
         let tableau=document.getElementById('tableau');
         let mot=document.getElementById('mot');
         let data=[];
+        
         function ajouter() {
             data.push(mot.value);
             tableau.innerHTML=data.map(e=>"<tr><td>"+e+"</td></tr>").join("");
