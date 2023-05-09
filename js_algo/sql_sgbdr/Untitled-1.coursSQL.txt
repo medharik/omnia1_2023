@@ -1,0 +1,42 @@
+BASE DE DONNNEES :  en generale c'est un ensemble de donnees 
+TERMONOLOGIE : 
+niveau logique : ensemble de table (poour les bases de donnees SQL ) (ou nde document pour les base de donnees NOSQL)
+ souvent relationnelles 
+ niveau physique : fichier dans le DD
+ROLE : PERSISTENCE + STRUCTURATION
+SQL  : langage de requetes structurees
+table : ensemble de colonnne 
+SGBDR  : SYSTEMES DE GESTION DES BASES DE DONNEES RELATIONNELLES : 
+=>LOGIIEL PERMETTANT DE GERER UNE Bd ,
+ exemples de SGBDR   : 
+    MS ACCESS : sgbdr client
+    sgbdr server :
+    MS SQL SERVER :
+    ORACLE  
+    MYSQL SERVER
+    POSTGRESQL  SERVER
+document: mongodb,redis,...,json-server,...
+SQL : 
+LDD : Langage de Definition des Donnees :  create , alter et drop 
+LMD : L.MANIPULATION .D : insert , update et delete 
+LID : L.INTEROGATION.D : SELECT (recherche)
+LTD : L.TRANSACTION.D : COMMIT , ROLLBACK, SAVEPOINT A
+LCD : CONTROLE : ALTER , DROP  CREATE USER, GRANT , REVOKE  PRIVILLEGES, ROLES 
+
+
+META DATA : NOM , AGE (definition/structure des donnees)
+DATA : alami, 19, 
+hachimi 20
+
+-- creer une base de donnees 
+--  CREATE DATABASE di2023
+-- CREATE TABLE produit(
+-- reference INT  primary key ,
+-- libelle VARCHAR(100),
+-- prix float,
+-- qtestock INT 
+-- )
+-- DESCRIBE produit
+ --- SELECT DISTINCT * FROM produit
+-- ajouter un nouveau  RECORD
+-- INSERT INTO produit(reference,libelle,qtestock,prix) VALUES(2,'dell ',10,2500)
