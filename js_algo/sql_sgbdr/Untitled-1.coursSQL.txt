@@ -37,6 +37,11 @@ hachimi 20
 -- qtestock INT 
 -- )
 -- DESCRIBE produit
- --- SELECT DISTINCT * FROM produit
+ -- SELECT DISTINCT * FROM produit
 -- ajouter un nouveau  RECORD
--- INSERT INTO produit(reference,libelle,qtestock,prix) VALUES(2,'dell ',10,2500)
+--  INSERT INTO produit(reference,libelle,qtestock,prix) VALUES(2,'dell ',10,2500)
+
+creer une bd dbstudent
+creer la table etudiant(matricule,nom,prenom,age)
+ajouter 2 etudiants 
+afficher les 2 etudiants 
