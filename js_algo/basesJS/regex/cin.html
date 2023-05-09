@@ -8,20 +8,24 @@
 </head>
 <body>
 
-    <h2>Verifier votre CIN </h2>
-    CIN : <input type="text"  id="cin"><button onclick="verifierCin()">Verifier</button>
+    <h2>Verifier votre MATRICULE de voiture </h2>
+    Matricule : <input type="text"  id="mat"><button onclick="verifierMatricule()">Verifier</button>
     <p id="resultat">...</p>
+    <img src="" alt="" id="tof" width="150">
 
 
     <script>
-        function verifierCin() {
-           let  x = document.getElementById('cin');
+        function verifierMatricule() {
+           let  x = document.getElementById('mat');
            let  e = document.getElementById('resultat');
-            let modelCin=/[a-z]{1,2}[ /-]{0,}[0-9]{5,6}/
-            if (modelCin.test(x.value)) {
-              e.innerHTML="Cin correct";
+           let  tof = document.getElementById('tof');
+            let modelMat=/[0-9]{1,2}[ -/]{0,}[a-zA-Z]{1}[ -/]{0,}[0-9]{1,}/
+            if (modelMat.test(x.value)) {
+              e.innerHTML="MAtricule correct";
+              tof.src="good.png";
             } else {
-                e.innerHTML="Cin incorrect";
+                e.innerHTML="Matricule incorrect";
+                tof.src="bad.png";
                 
             }
        }

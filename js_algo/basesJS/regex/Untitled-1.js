@@ -17,7 +17,7 @@ if (modelCin.test(cin)) {
     alert("CIn incorrect");
 }
 
-
-1A1
+// https://github.com/medharik/omnia1_2023
+1/A1
 12A12324
 1B123
