@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>verification de la cin</title>
+</head>
+<body>
+
+    <h2>Verifier votre CIN </h2>
+    CIN : <input type="text"  id="cin"><button onclick="verifierCin()">Verifier</button>
+    <p id="resultat">...</p>
+
+
+    <script>
+        function verifierCin() {
+           let  x = document.getElementById('cin');
+           let  e = document.getElementById('resultat');
+            let modelCin=/[a-z]{1,2}[ /-]{0,}[0-9]{5,6}/
+            if (modelCin.test(x.value)) {
+              e.innerHTML="Cin correct";
+            } else {
+                e.innerHTML="Cin incorrect";
+                
+            }
+       }
+    </script>
+</body>
+</html>
