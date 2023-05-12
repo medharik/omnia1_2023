@@ -4,3 +4,7 @@
 .full{
     width: 100%;
 }
+
+.orange{
+    background: rgba(255, 68, 0, 0.397) !important;
+}
