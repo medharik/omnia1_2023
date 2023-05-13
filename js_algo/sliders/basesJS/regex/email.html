@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Check email</title>
+  </head>
+  <body>
+    Email :
+    <input
+      type="text"
+      id="email"
+    />
+    <button onclick="verifieremail()">Ok</button>
+    <br>
+    <img
+      src=""
+      alt=""
+      width="100"
+      id="tof"
+    />
+
+    <script>
+      function verifieremail() {
+        let em = document.getElementById("email");
+        let tof = document.getElementById("tof");
+        let modelEmail = /^[a-z]{1,}[0-9a-z.-_]{0,}@[a-z]{2,}.[a-z]{2,3}$/i;
+        if (modelEmail.test(em.value)) {
+          tof.src = "ok.jpg";
+        } else {
+          tof.src = "ko.gif";
+        }
+      }
+    </script>
+  </body>
+</html>

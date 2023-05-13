@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slider 1 </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+   <div class="container border">
+   <img id="tof" src="slider1.jpg" alt="" class="img-fluid">
+   </div>
+  
+   <div class="text-center mt-3">
+    
+    <button onclick="slider('slider1.jpg')" class="btn btn-outline-primary">Pc portable</button>
+    <button onclick="slider('slider2.jpg')" class="btn btn-outline-success"> Pc Bureau </button>
+    <button onclick="slider('slider3.jpg')" class="btn btn-outline-info"> Accessoire </button>
+      
+      
+    
+    </div>
+    
+
+<script>
+    let tof= document.getElementById('tof');
+ 
+    function slider(x) {
+        tof.src=x;
+    }
+    function slider1() {
+       tof.src="slider1.jpg";
+    }
+    
+    function slider2() {
+      
+       tof.src="slider2.jpg";
+    }
+    function slider3() {
+       tof.src="slider3.jpg";
+    }
+</script>
+    
+</body>
+</html>

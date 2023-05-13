@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>verification de la cin</title>
+</head>
+<body>
+
+    <h2>Verifier votre MATRICULE de voiture </h2>
+    Matricule : <input type="text"  id="mat"><button onclick="verifierMatricule()">Verifier</button>
+    <p id="resultat">...</p>
+    <img src="" alt="" id="tof" width="150">
+
+
+    <script>
+        function verifierMatricule() {
+           let  x = document.getElementById('mat');
+           let  e = document.getElementById('resultat');
+           let  tof = document.getElementById('tof');
+            let modelMat=/[0-9]{1,2}[ -/]{0,}[a-zA-Z]{1}[ -/]{0,}[0-9]{1,}/
+            if (modelMat.test(x.value)) {
+              e.innerHTML="Matricule correct";
+              tof.src="good.png";
+            } else {
+                e.innerHTML="Matricule incorrect";
+                tof.src="bad.png";
+                
+            }
+       }
+    </script>
+</body>
+</html>

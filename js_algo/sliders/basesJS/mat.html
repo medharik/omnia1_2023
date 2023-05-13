@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>verifir email</title>
+  </head>
+  <body>
+    <h1>Inscription</h1>
+    <form action="">
+      Email :
+      <input
+        type="text"
+        id="mail"
+      />
+      <button         type="button"         onclick="tester()"      >
+        Ok
+      </button>
+    </form>
+
+    <div id="erreur"></div>
+
+    <script>
+      function tester() {
+        let m = document.getElementById("mail");
+        let e = document.getElementById("erreur");
+        let modelEmail=/^[a-z]{1,}[0-9a-z.]{0,}@[a-z]{2,}[.]{1}[a-z]{2,3}$/
+        if (modelEmail.test(m.value)) {
+            // alert('OK')
+            e.innerHTML="OK";
+        }else{
+            e.innerHTML="KO";
+        }
+
+      }
+    </script>
+  </body>
+</html>
