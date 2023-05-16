@@ -1,0 +1,26 @@
+#titre{
+background: red;
+width: 300px;
+color: white !important;
+/* transition: all 500ms  ease-in; */
+
+animation: droite 2s 1;
+}
+#titre:hover{
+    background: yellowgreen;
+    color: green;
+    /* transform: rotate(-90deg); */
+}
+@keyframes droite {
+    from{
+        transform: translateX(-100%);
+    }
+    to{
+        transform: translateX(0);
+       
+    }
+}
+
+.container img{
+    animation: droite 2s ;
+}

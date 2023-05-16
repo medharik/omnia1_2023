@@ -1,26 +1,20 @@
-let current=0;
-//  current=3;
+let encours = 0;
+const FIN = 2;
 
-//   console.log('e1',current)
-// // current++;//incrementer par 1 
-// current--;//decrementer par 1 
-
-// console.log('e2',current)
 function avancer() {
-    current++;
+  encours++;
+  if (encours > FIN) {
+    encours = 0;
+  }
 }
 function reculer() {
-    current--;
+  encours--;
+  if (encours < 0) {
+    encours = FIN;
+  }
 }
-function aller(x) {
-    current=x;
+function allerVers(pos) {
+  encours = pos;
 }
-
-//appel la fonction avancer
-avancer();
-
-// aller(10);
-console.log('e1',current);
-let noms=["ali.jpg","aya.jpg","rim.jpg","Omar.jpg"];
-console.log(noms[current])
-
+reculer();
+console.log(encours);

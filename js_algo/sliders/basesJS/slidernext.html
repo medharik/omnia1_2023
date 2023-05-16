@@ -13,51 +13,56 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="anim.css">
   </head>
   <body>
-    <h1 class="text-center text-primary">Mon slider</h1>
-    <div class="container border border-danger">
-      <img id="tof" style="height: 500px; width: 100%;object-fit: cover;object-position: top;"
+    <h1 id="titre" class="text-center text-primary">Mon slider</h1>
+    <div class="container border ">
+      <img id="tof" style="height: 600px; width: 100%;object-fit: cover;object-position: top;"
         class="img-fluid"
         src="mbappe.jpg"
         alt=""
       />
+      <video src=""></video>
     </div>
     <div class="text-center mt-3">
         <button class="btn btn-outline-success" onclick="reculer()">Precedent</button>
-        <button class="btn btn-outline-success" onclick="aller(0)">1</button>
-        <button class="btn btn-outline-success" onclick="aller(1)">2</button>
-        <button class="btn btn-outline-success" onclick="aller(2)">3</button>
-        <button class="btn btn-outline-success" onclick="aller(3)">4</button>
+        <button class="btn btn-outline-danger" onclick="allerVers(0)" >1</button>
+        <button class="btn btn-outline-danger" onclick="allerVers(1)">2</button>
+        <button class="btn btn-outline-danger" onclick="allerVers(2)">3</button>
+        <button class="btn btn-outline-danger" onclick="allerVers(3)">4</button>
 
       <button class="btn btn-outline-primary" onclick="avancer()">Suivant</button>
     </div>
 
     <script>
-        let current=0;
-        let  images=["mbappe.jpg","hakimi.jpg","salah.jpg","sadio.jpeg"];
-        let tof=document.getElementById('tof')
-      function avancer() {
-        current++;
-        if (current>3) {
-        current=0;
-        }
-        afficher();
-      }
-      function reculer() {
-        current--;
-        if (current<0) {
-            current=3;
-        }
-        afficher();
-      }
-      function aller(x) {
-        current = x;
-        afficher();
-      }
-      function afficher() {
-        tof.src=images[current];
-      }
+let images=["mbappe.jpg","hakimi.jpg","sadio.jpeg","salah.jpg"];
+let encours = 0;
+const FIN = images.length-1;
+let tof=document.getElementById('tof');
+function avancer() {
+  encours++;
+  if (encours > FIN) {
+    encours = 0;
+  }
+  afficher();
+}
+function reculer() {
+  encours--;
+  if (encours < 0) {
+    encours = FIN;
+  }
+  afficher()
+}
+function allerVers(pos) {
+  encours = pos;
+  afficher()
+}
+function afficher() {
+    tof.src=images[encours];
+}
+
+       
     </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
