@@ -8,8 +8,8 @@
 
 -- creer la table produit (id,libelle,prix,qtestock, date_creation)
 -- CREATE table produit(
--- id int  primary key ,
-  --   libelle varchar(50) unique  not null ,
+-- id int  primary key  auto_increment,
+  --   libelle varchar(50)   not null ,
  --   prix float not null ,
   -- qtestock int default 0  , 
   --  date_creation timestamp  DEFAULT CURRENT_TIMESTAMP
@@ -19,6 +19,7 @@
 --  insert into produit (libelle,prix,qtestock) values ('sony  d6',6000,20)
 -- selection des produits : 
    select * from produit
+
 -- select libelle,prix from produit
 -- select libelle,prix, qtestock , prix* qtestock as "Valeur du Stock"   from produit 
 -- where qtestock != 0 and prix >6100 
@@ -29,3 +30,4 @@
 
 -- update produit set qtestock=8 
 -- where libelle= 'dell  d6'
+

@@ -26,3 +26,5 @@ CONSTRAINT fk_dep_emp FOREIGN key(department_id) REFERENCES departments(departme
     CONSTRAINT uc_emp unique(first_name,last_name)
     )
 
+
+alter table departments add CONSTRAINT fk_manager_dep FOREIGN key(manager_id) references employees(employee_id);

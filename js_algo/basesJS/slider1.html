@@ -16,9 +16,11 @@
   
    <div class="text-center mt-3">
     
-    <button onclick="slider('slider1.jpg')" class="btn btn-outline-primary">Pc portable</button>
-    <button onclick="slider('slider2.jpg')" class="btn btn-outline-success"> Pc Bureau </button>
-    <button onclick="slider('slider3.jpg')" class="btn btn-outline-info"> Accessoire </button>
+    <button onclick="reculer()" class="btn btn-outline-primary"><<</button>
+    <button id="btn0" onclick="vers(1)" class="btn btn-outline-success"> 1 </button>
+    <button id="btn1" onclick="vers(2)" class="btn btn-outline-success"> 2 </button>
+    <button id="btn2" onclick="vers(3)" class="btn btn-outline-success"> 3 </button>
+    <button onclick="avancer()" class="btn btn-outline-info"> >> </button>
       
       
     
@@ -27,21 +29,47 @@
 
 <script>
     let tof= document.getElementById('tof');
+    let images=['slider1.jpg','slider2.jpg','slider3.jpg','slider2.jpg'];
+
+    images.push("slider4.jpg");
+let encours=0;
+const FIN=images.length-1;
+const DEBUT =0;
+
+function avancer(){
+    encours++;
+    if(encours>FIN){
+        encours=DEBUT;
+    }
+    afficher();
+}
+function reculer(){
+    encours--;
+    if(encours<DEBUT){
+        encours=FIN;
+    }
+    afficher();
+}
+
+function vers(numero){
+encours=numero-1;
+let e =document.getElementById('btn'+encours);
+raz();
+e.style.backgroundColor='red';
+afficher();
+}
  
-    function slider(x) {
-        tof.src=x;
+function afficher() {
+    tof.src=images[encours];
+}
+   
+   function raz(){
+    for (let i = 0; i < images.length; i++) {
+    let e= document.getElementById('btn'+i);
+    e.style.backgroundColor='green';
+        
     }
-    function slider1() {
-       tof.src="slider1.jpg";
-    }
-    
-    function slider2() {
-      
-       tof.src="slider2.jpg";
-    }
-    function slider3() {
-       tof.src="slider3.jpg";
-    }
+   }
 </script>
     
 </body>
