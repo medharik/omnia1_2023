@@ -1,3 +1,10 @@
-.purple{
-    background: purple;
+.violet{
+    background: purple !important;
+}
+
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show{
+    color: white;
+}
+.nav-link {
+    color: white;
 }
