@@ -1,0 +1,22 @@
+.hassan {
+    background: rgba(2, 2, 2, 0.1) !important;
+position: fixed;
+top: 0;
+width: 100vw;
+z-index: 2;
+}
+.slider{
+    background: url('../bootstrap/images/slider1.jpg');
+height: 100vh;
+background-size: cover;
+
+}
+.faye{
+padding-left: 30px !important;
+background: rgb(216, 6, 6) url('applle.png') no-repeat;
+background-position: left;
+background-size: 20px;
+padding-top: 10px;
+padding-bottom: 10px;
+
+}

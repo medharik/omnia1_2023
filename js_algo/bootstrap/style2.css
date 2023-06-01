@@ -1,0 +1,11 @@
+.mon-menu{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.337) !important;
+    z-index: 2;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+color: white !important;
+}

@@ -1,0 +1,40 @@
+.transparent{
+    background: rgba(0, 0, 0, 0.222) !important;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+}
+
+.transparent .navbar-nav .nav-link, .transparent .navbar-nav .nav-link.show {
+    color: white;
+}
+.transparent .navbar-nav .nav-link.active, .transparent .navbar-nav .nav-link.show {
+    color: rgb(255, 0, 0);
+}
+.navbar-brand{
+    color: white;
+}
+.navbar-toggler{
+background: red;
+}
+.cyan{
+    color: aqua;
+}
+
+@media screen and (max-width:576px){
+    .text-sm-justify{
+        text-align: justify;
+    }
+    .transparent{
+        background: rgba(255, 0, 0, 0.832) !important;
+      
+    }
+}
+@media screen and (min-width:576px) and (max-width:768px){
+ 
+    .transparent{
+        background: rgba(167, 255, 4, 0.832) !important;
+      
+    }
+}
