@@ -51,7 +51,12 @@
           />
         </div>
         <div class="col-md">
-          <button class="btn btn-primary">+</button>
+          <button
+            onclick="ajouter()"
+            class="btn btn-primary"
+          >
+            +
+          </button>
           <button
             onclick="window.print()"
             class="btn btn-danger"
@@ -67,24 +72,21 @@
       <table class="table table-dark">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">id</th>
+            <th scope="col">Libelle</th>
+            <th scope="col">prix</th>
+            <th scope="col">quantite</th>
+            <td></td>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-        </tbody>
+        <tbody id="c"></tbody>
+        <li></li>
       </table>
     </div>
-    <!-- fin tableau des produits  -->
+    \
 
+    <!-- fin tableau des produits  -->
+    <div id="resultat"></div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
@@ -92,17 +94,114 @@
     ></script>
 
     <script>
-        let  libelle = document.getElementById("libelle");
-        let  prix = document.getElementById("prix");
-        let  qte = document.getElementById("qte");
-        //tableau : ensemble de donnees (souvent de meme type) : tableau de prix [1000,200,10]
-        //objet > ensemble de donnees (souvent de type different) : un produit : {libelle:"hp",prix:9000,qte:12}
-let hp={"libelle": "hp dv 8","prix":5000,"qte":100};
-let dell={"libelle": "dell s 2","prix":9000,"qte":10};
-// let client={"nom": "doe","prenom":"john"};
-let produits=[hp,dell];
+      let libelle = document.getElementById("libelle");
+      let prix = document.getElementById("prix");
+      let qte = document.getElementById("qte");
+      let c = document.getElementById("c");
+      let i = 0;
+      let produits = [];
+  
+      const afficher = () => {
+     c.innerHTML=   produits.map(e=>`<tr>
+            <th scope="col">${e.id}</th>
+            <th scope="col">${e.libelle}</th>
+            <th scope="col">${e.prix}</th>
+            <th scope="col">${e.qte}</th>
+            <td></td>
+          </tr>`).join("");
 
-console.log(produits[0].libelle,produits[1].prix);
+      };
+      const ajouter = () => {
+        let produit = { "id": ++i, "libelle": libelle.value, "prix": prix.value, "qte": qte.value };
+      console.log("libelle",libelle)
+        produits.push(produit);
+        afficher();
+        effacer();
+      };
+const effacer=()=>{
+  libelle.value=""
+  prix.value=""
+  qte.value=""
+  libelle.focus();
+}
+      
+      let majorite = (age) => {
+        if (age > 21) {
+          console.log("majeur");
+        } else {
+          console.log("mineur");
+        }
+      };
+      majorite(30);
+      // const del =(id)=>{
+      // produits=produits.filter(e=>e.id!=id);
+      // }
+      // const add =()=>{
+      //   let p={libelle,prix,qte};
+      // produits.push(p);
+      // console.log(p)
+      // }
+
+      //         //tableau : ensemble de donnees (souvent de meme type) : tableau de prix [1000,200,10]
+      //         //objet >  ensemble de donnees (souvent de type different) : un produit : {libelle:"hp",prix:9000,qte:12}
+      //         //etudiant={nom:"Doe",prenom:"john",age:20,datedenaissance:"01/01/2000"}
+      //         // note=[12,20,15,16]
+      //         // note[0]
+      // let hp={"id":1,"libelle": "hp dv 8","prix":5000,"qte":100};//key : value
+      // let dell={"id":2,"libelle": "dell s 2","prix":9000,"qte":0};
+      // let mac={"id":3,"libelle": "macbook pro","prix":10000,"qte":10};
+      // // console.log(mac.libelle,dell.prix,hp.qte)
+      // // let client={"nom": "doe","prenom":"john"};
+      // let produits=[hp,dell,mac,dell,mac,hp];
+      // let c =document.getElementById('c');
+      // let all=()=>{
+      //   c.innerHTML=produits.map(e=>`  <tr>
+      //             <th scope="row">${e.id}</th>
+      //             <td>${e.libelle}</td>
+      //             <td>${e.prix}</td>
+      //             <td>${e.qte}</td>
+      //             <td><button onclick="del(${e.id})" href="" class="btn btn-danger">-</button></td>
+      //           </tr>` ).join("");
+      // }
+
+      // console.log(produits.length);
+      // let somme=0;
+      // for (let i = 0; i < produits.length; i++) {
+      //  // const element = array[i];
+      //  somme+=produits[i].prix;
+      //  console.log(produits[i].libelle+' coute '+produits[i].prix+"DHS");
+
+      // }
+      // console.log('la somme est '+somme+'dhs');
+      // //for in pour un objet
+      // for (const key in hp) {
+      //  console.log(key,hp[key])
+      // }
+      // //for of : pour tableau d'objet
+      // for (const e of produits) {
+      // console.log(e.prix)
+      // }
+      // // let produits=[hp,dell,mac];
+
+      // total=0;
+      // produits.forEach((e,i)=>{
+      //   if(i!=0){
+      //     total+=e.prix;
+      //     console.log(e.libelle,e.prix)
+      //     console.log('foreach 11 ', e,i);
+
+      //    }
+      // });
+
+      //  prix=[120,200,20,10,300,67];
+      // console.log(prix)
+      // prixHTML=prix.map(e=>`<li>${e}</li>`);
+      // console.log(prixHTML)
+      // let html=prixHTML.join("");
+      // console.log(html)
+      // let r=document.getElementById('resultat');
+      // r.innerHTML=html;
+      // // console.log('total est '+total);
     </script>
   </body>
 </html>
