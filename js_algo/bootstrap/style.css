@@ -17,3 +17,17 @@ width: 100%;
 /* bottom: 0;; */
 
 }
+#intro{
+    background: url("images/slider1.jpg") ;
+    background-attachment: fixed;
+background-size: cover;
+height: 200px;
+color: white;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+#intro h1{
+    font-size: 5em;
+}

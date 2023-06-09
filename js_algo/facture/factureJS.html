@@ -76,11 +76,16 @@
             <th scope="col">Libelle</th>
             <th scope="col">prix</th>
             <th scope="col">quantite</th>
+            <th scope="col">Action</th>
             <td></td>
           </tr>
         </thead>
         <tbody id="c"></tbody>
-        <li></li>
+     <tfoot>
+      <tr>
+        <td colspan="6" class="text-end"><span id="tht">0</span>DHS</td>
+      </tr>
+     </tfoot>
       </table>
     </div>
     \
@@ -107,6 +112,7 @@
             <th scope="col">${e.libelle}</th>
             <th scope="col">${e.prix}</th>
             <th scope="col">${e.qte}</th>
+            <th scope="col"><button class="btn btn-danger" onclick="supprimer(${e.id})">-</button></th>
             <td></td>
           </tr>`).join("");
 
@@ -117,12 +123,32 @@
         produits.push(produit);
         afficher();
         effacer();
+        afficherTHT();
       };
 const effacer=()=>{
   libelle.value=""
   prix.value=""
   qte.value=""
   libelle.focus();
+}
+
+const supprimer=(id)=>{
+  // console.log('id est ',id)
+produits=produits.filter((e)=>e.id!=id);
+afficher();
+afficherTHT();
+}
+const calculer_tht=()=>{
+  let tht=0;
+  produits.forEach((e)=>{ 
+    tht+=e.prix*e.qte;
+
+  });
+  return tht;
+}
+[2,4,5,8].filter(e=>e>6);
+afficherTHT=()=>{
+document.getElementById('tht').innerHTML=calculer_tht();
 }
       
       let majorite = (age) => {
