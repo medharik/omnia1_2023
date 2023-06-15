@@ -52,10 +52,11 @@
         </div>
         <div class="col-md">
           <button
+          id="bouton"
             onclick="ajouter()"
             class="btn btn-primary"
           >
-            +
+            Ajouter
           </button>
           <button
             onclick="window.print()"
@@ -112,11 +113,13 @@
             <th scope="col">${e.libelle}</th>
             <th scope="col">${e.prix}</th>
             <th scope="col">${e.qte}</th>
-            <th scope="col"><button class="btn btn-danger" onclick="supprimer(${e.id})">-</button></th>
+            <th scope="col"><button class="btn btn-danger" onclick="supprimer(${e.id})">S</button>
+              <button class="btn btn-warning" onclick="editer(${e.id})">M</button></th>
             <td></td>
           </tr>`).join("");
 
       };
+
       const ajouter = () => {
         let produit = { "id": ++i, "libelle": libelle.value, "prix": prix.value, "qte": qte.value };
       console.log("libelle",libelle)
@@ -131,13 +134,20 @@ const effacer=()=>{
   qte.value=""
   libelle.focus();
 }
-
 const supprimer=(id)=>{
   // console.log('id est ',id)
 produits=produits.filter((e)=>e.id!=id);
 afficher();
 afficherTHT();
 }
+let etudiants=[{"id":1,"prenom":"ali"},{"id":2,"prenom":"john"},{"id":3,"prenom":"Rim"}]
+// etudiants.filter(e=>e.id!=2);
+let et=etudiants.find(e=>e.id==2);
+// if(et!=undefined){
+// console.log('le prenom est ',et.prenom)
+// }
+console.log('et est ',et?.prenom);
+
 const calculer_tht=()=>{
   let tht=0;
   produits.forEach((e)=>{ 
@@ -146,7 +156,8 @@ const calculer_tht=()=>{
   });
   return tht;
 }
-[2,4,5,8].filter(e=>e>6);
+let p=[2,4,5,8].find(e=>e==8);
+
 afficherTHT=()=>{
 document.getElementById('tht').innerHTML=calculer_tht();
 }

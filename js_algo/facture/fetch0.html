@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Fetch APi</title>
+  </head>
+  <body>
+    <!-- Fetch API -->
+<img src="" id="tof" alt="" width="200">
+<h2 id="titre"></h2>
+<h2 id="prix"></h2>
+<h3 id="post"></h3>
+    <script>
+      // PROMISES
+      const getProduit = () => {
+        console.log("debut");
+        fetch("https://fakestoreapi.com/products/3")
+          .then((reponse) => reponse.json())
+          .then((produit) => {
+          let tof=  document.getElementById('tof')
+          let titre=  document.getElementById('titre')
+          let prix=  document.getElementById('prix')
+          tof.src=produit.image
+          titre.innerHTML=produit.title
+          prix.innerHTML=produit.price
+          });
+        console.log("fin");
+      };
+
+      const getPost = () => {
+        console.log("debut");
+        fetch("http://localhost:3000/posts/1")
+          .then((reponse) => reponse.json())
+          .then((post) => {
+          let p=  document.getElementById('post')
+      
+          p.innerHTML=post.title
+          });
+        console.log("fin");
+      };
+
+      getProduit();
+      getPost();
+    </script>
+  </body>
+</html>

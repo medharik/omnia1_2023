@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Facture en ligne</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="style.css"
+    />
+  </head>
+  <body>
+    <!-- formulaire pour ajouter des produits -->
+    <div class="container my-5 noprint">
+      <div class="row border border-dark p-3 rounded">
+        <div class="col-md-5">
+          
+          <input
+            type="text"
+            class="form-control border-dark"
+            placeholder="Libelle du produit"
+            id="libelle"
+          />
+
+        </div>
+        <div class="col-md">
+          <input
+            type="text"
+            class="form-control border-dark"
+            placeholder="Prix du produit"
+            id="prix"
+          />
+        </div>
+        <div class="col-md">
+          <input
+            type="text"
+            class="form-control border-dark"
+            placeholder="Quantite du produit"
+            id="qte"
+          />
+        </div>
+        <input type="hidden" id="id" placeholder="id" >
+        <div class="col-md">
+          <button
+            id="bouton"
+            onclick="actionner()"
+            class="btn btn-primary"
+          >
+           <span id="action">Ajouter</span> 
+          </button>
+          <button
+            onclick="window.print()"
+            class="btn btn-danger"
+          >
+            Imprimer
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- fin  formulaire -->
+    <!-- tableau des produits  -->
+    <div class="container">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Libelle</th>
+            <th scope="col">prix</th>
+            <th scope="col">quantite</th>
+            <th scope="col">Action</th>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody id="c"></tbody>
+        <tfoot>
+          <tr>
+            <td
+              colspan="6"
+              class="text-end"
+            >
+              <span id="tht">0</span>DHS
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    \
+
+    <!-- fin tableau des produits  -->
+    <div id="resultat"></div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      let libelle = document.getElementById("libelle");
+      let prix = document.getElementById("prix");
+      let qte = document.getElementById("qte");
+      let c = document.getElementById("c");
+      let spanAction = document.getElementById("action");
+      let champid = document.getElementById("id");
+      let i = 0;
+      let action="ajouter";
+      let produits = [];
+      //ajouter des produits
+      document.getElementById('')
+      function actionner() {
+        // recuperer le produit du form
+        let produit = {
+        
+          libelle: libelle.value,
+          prix: prix.value,
+          qte: qte.value,
+        };
+
+        if(spanAction.innerHTML=="Ajouter"){
+         produit={id:++i,...produit};
+
+        produits.push(produit);
+        }else{
+          //code de modif
+        produit={...produit,id:champid.value}
+    // let index=   produits.findIndex(e=>e.id==champid.value);
+    // produits[index]=produit;
+    produits=produits.map(e=> e.id==champid.value?produit:e);
+    afficher();
+    clear();
+    spanAction.innerHTML="Ajouter";
+        }
+      
+        afficher();
+        clear();
+      }
+      //afficher les produits en html
+    const afficher=()=> {
+    c.innerHTML= produits.map(e=> `   <tr>
+            <th scope="col">${e.id}</th>
+            <th scope="col">${e.libelle}</th>
+            <th scope="col">${e.prix}</th>
+            <th scope="col">${e.qte}</th>
+            <th scope="col"><button class="btn btn-danger" onclick="supprimer(${e.id})">-</button>
+                <button class="btn btn-warning" onclick="editer(${e.id})">M</button>
+                </th>
+            <td></td>
+          </tr>`).join("");
+      }
+const editer=(id)=>{
+let produitAediter=produits.find(e=>e.id==id)
+if(produitAediter){
+  libelle.value=produitAediter.libelle
+  prix.value=produitAediter.prix
+  qte.value=produitAediter.qte
+  champid.value=produitAediter.id
+
+spanAction.innerHTML="Modifier";
+}else{
+  alert('produit introuvable')
+}
+}
+      //fonction qui efface le form
+    const clear=()=>{
+        libelle.value=""
+        prix.value=""
+        qte.value=""
+
+    }
+      //calculer le tht,ttc
+      //supprimer un produit (objet) du tableaux d'objet produits
+
+    const supprimer =(id=0)=>{
+        
+   produits=  produits.filter(e=>e.id!=id);
+   afficher();
+    }
+    // supprimer(1);
+    </script>
+  </body>
+</html>
