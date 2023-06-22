@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>liste des produits depuis une API/WEB SERVICE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container">
+        <div> Categorie : 
+        <select name="" id="categories"  class="form-select" onchange="produitParCategorie()">
+            <option value=""></option>
+        </select></div>
+        <br>
+        <div class="row" id="cata">
+            <div class="col-md-4 text-center border border-danger" >
+                <img src="../bootstrap/prod2.png" alt="" class="img-fluid">
+                <h2>titre</h2>
+                <h2>prix</h2>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const getAllProducts=()=>{
+            fetch('https://fakestoreapi.com/products')
+            .then(res=>res.json())
+            .then(produits=>{
+            console.log('les produits sont ',produits);
+document.getElementById('cata').innerHTML=produits.map(e=> ` <div class="col-md-4 text-center border border-danger" >
+                <img style="height:300px" src="${e.image}" alt="" class="img-fluid">
+                <h2>${e.title}</h2>
+                <h2>${e.price}</h2>
+            </div>`).join("")
+                
+            })
+        }
+        getAllProducts();
+
+        const produitParCategorie=()=>{
+          let catego  =document.getElementById('categories');
+            fetch('https://fakestoreapi.com/products/category/'+catego.value)
+            .then(res=>res.json())
+            .then(produits=>{
+            console.log('les produits sont ',produits);
+document.getElementById('cata').innerHTML=produits.map(e=> ` <div class="col-md-4 text-center border border-danger" >
+                <img style="height:300px" src="${e.image}" alt="" class="img-fluid">
+                <h2>${e.title}</h2>
+                <h2>${e.price}</h2>
+            </div>`).join("")
+                
+            })
+        }
+      
+        const getCategories=()=>{
+            fetch('https://fakestoreapi.com/products/categories')
+            .then(res=>res.json())
+            .then(categories=>{
+                console.log('categories ',categories);
+      document.getElementById('categories').innerHTML=      categories.map(e=>`  <option value="${e}">${e}</option>`)
+            }).join("")
+        }
+        getCategories();
+
+    </script>
+</body>
+</html>

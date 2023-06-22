@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Facture en ligne</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- formulaire pour ajouter des produits -->
+    <div class="container my-5 noprint">
+      <select name="" id="liste" onclick="charger()">
+        <option value=""></option>
+      </select>
+      <div class="row">
+        <h3 id="titre" class="text-center text-primary"></h3>
+<input type="text" id="facture_id" class="form-control mx-auto my-5" style="width:50%" placeholder="Numero de la facture">
+<button
+            id="btn_all"
+            onclick="recup_numero_facture()"
+            class="btn btn-success" 
+          >
+            Rechercher une Facture
+          </button>
+<button id="btn_facture" class="btn btn-success">OK</button>     
+</div>
+      <div class="row border border-dark p-3 rounded">
+        <div class="col-md-5">
+          <input type="hidden" id="id" >
+          <input
+            type="text"
+            class="form-control border-dark"
+            placeholder="Libelle du produit"
+            id="libelle"
+          />
+        </div>
+        <div class="col-md">
+          <input
+            type="text"
+            class="form-control border-dark"
+            placeholder="Prix du produit"
+            id="prix"
+          />
+        </div>
+        <div class="col-md">
+          <input
+            type="text"
+            class="form-control border-dark"
+            placeholder="Quantite du produit"
+            id="qte"
+          />
+        </div>
+        <input
+          type="hidden"
+          id="id"
+          placeholder="id"
+        />
+        <div class="col-md">
+          <button
+            id="bouton"
+       onclick="ajouter()"
+            class="btn btn-primary"
+          >
+            <span id="action">Ajouter</span>
+          </button>
+          <button
+            onclick="window.print()"
+            class="btn btn-danger"
+          >
+            Imprimer
+          </button>
+          
+        </div>
+      </div>
+    </div>
+    <!-- fin  formulaire -->
+    <!-- tableau des produits  -->
+    <div class="container">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Libelle</th>
+            <th scope="col">prix</th>
+            <th scope="col">quantite</th>
+            <th scope="col">Action</th>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody id="c"></tbody>
+        <tfoot>
+          <tr>
+            <td
+              colspan="6"
+              class="text-end"
+            >
+              <span id="tht">0</span>DHS
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    \
+
+    <!-- fin tableau des produits  -->
+    <div id="resultat"></div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      let libelle = document.getElementById("libelle");
+      let prix = document.getElementById("prix");
+      let qte = document.getElementById("qte");
+      let c = document.getElementById("c");
+      let facture_id = document.getElementById("facture_id");
+      let spanAction = document.getElementById("action");
+      bouton=document.getElementById('bouton');
+      let champid = document.getElementById("id");
+      let i = 0;
+      let action = "ajouter";
+      let produits = [];
+      const URL = "http://localhost:8090/produits/";
+//fonction qui recupere tous les produits 
+let numero_facture=0;
+const charger=()=>{
+  numero_facture=liste.value;
+  tous();
+}
+const recup_numero_facture=()=>{
+  liste_facture();
+
+ numero_facture=  prompt("Entrer le numero de la facture ");
+tous();
+}
+
+const liste_facture=()=>{
+  fetch("http://localhost:8090/listefacture").then(res=>res.json()).then(data=>{
+   const liste= document.getElementById('liste');
+   console.log('liste',data[0].numero_facture)
+liste.innerHTML=data.map(e=>
+   `<option value="${e.numero_facture}">${e.numero_facture}</option>`
+).join("");
+  })
+}
+liste_facture()
+const tous=()=>{
+ facture_id.value=numero_facture;
+    fetch(URL+"numero_facture/"+numero_facture).then(res=>res.json()).then(data=>{
+      // facture_id.value=data[0].numero_facture;
+      console.log(data.length)
+      if (data.length==0) {
+        document.getElementById('titre').innerHTML="NOuvelle Facture numero "+numero_facture;
+      }else{
+        document.getElementById('titre').innerHTML=" Edition de la facture numero  "+numero_facture;
+       
+      }
+c.innerHTML=data.map(e=>`   <tr>
+            <td scope="col">${e.id}</td>
+            <td scope="col">${e.libelle}</td>
+            <td scope="col">${e.prix}</td>
+            <td scope="col">${e.qte}</td>
+            <td scope="col">
+              <button class="btn btn-sm btn-danger" onclick="supprimer(${e.id})">S</button>
+              <button class="btn btn-sm btn-warning" onclick="editer(${e.id})">M</button>
+              
+              </td>
+            <td></td>
+          </tr>`).join("");
+    })
+}
+const editer=(id)=>{
+
+  fetch(URL+id).then(res=>res.json()).then(produit=>{
+    console.log(produit)
+    libelle.value=produit.libelle;
+    prix.value=produit.prix;
+    document.getElementById('id').value=produit.id;
+   spanAction.innerHTML="Modifier"
+   bouton.classList.remove('btn-primary')
+   bouton.classList.add('btn-warning')
+  });
+} 
+const ajouter=()=>{
+  let produit={libelle:libelle.value,prix:prix.value,numero_facture:facture_id.value};
+if(spanAction.innerHTML!="Modifier"){
+  const HEADER={
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(produit),
+      }
+  fetch(URL,HEADER).then(res=>{
+    tous();
+
+  });
+}else{
+  //spread
+  produit={...produit,id:document.getElementById('id').value}
+  // let t=[1,2,3];
+  // t=[...t,4]
+  const HEADER={
+
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(produit),
+      }
+  fetch(URL,HEADER).then(res=>{
+    tous();
+
+  });
+
+  spanAction.innerHTML="Ajouter"
+   bouton.classList.remove('btn-warning')
+   bouton.classList.add('btn-primary')
+
+}
+}
+const supprimer=(id)=>{
+  
+    const HEADER={
+          method: "DELETE"
+        
+        }
+    fetch(URL+id,HEADER).then(res=>tous());
+}
+    </script>
+  </body>
+</html>
